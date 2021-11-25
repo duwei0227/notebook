@@ -154,3 +154,6 @@ fun_features:
   
 # 压缩 Hexo 生成的文件
 # all_minifier: true
+
+footer:
+  content: "<i class=\"iconfont icon-love\"></i> 2021"
