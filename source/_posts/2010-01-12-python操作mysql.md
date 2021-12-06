@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用Python操作MySql
-categories: [python, mysql]
+categories: [Python]
 description: 使用Python操作MySql
 keywords: python, mysql, pymysql
 ---

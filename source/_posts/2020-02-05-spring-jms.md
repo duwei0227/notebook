@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Spring Boot JMS
-categories: [JMS, ActiveMQ]
+categories: [JMS]
 description: Spring Boot JMS
 keywords: Spring Boot, JMS, ActiveMQ
 ---

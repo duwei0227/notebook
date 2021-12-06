@@ -1,9 +1,9 @@
 ---
 layout: post
 title: Java普通类操作Spring Bean
-categories: [Java，Spring]
+categories: [Java]
 description: Java普通类操作Spring Bean
-keywords: java， spring， 普通类
+keywords: java,spring,普通类
 ---
 Java普通类操作Spring Bean
 
