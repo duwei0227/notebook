@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>解决Chrome浏览器默认https访问</title>
+    <link href="/2021/12/23/2021-12-23-%E8%A7%A3%E5%86%B3Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4https%E9%97%AE%E9%A2%98/"/>
+    <url>/2021/12/23/2021-12-23-%E8%A7%A3%E5%86%B3Chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4https%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1、背景"><a href="#1、背景" class="headerlink" title="1、背景"></a>1、背景</h3><p>Chrome新版浏览器在访问网址时会默认添加http，对于一部分未支持https或者公司内部的项目来说很不友好</p><h3 id="2、解决方案"><a href="#2、解决方案" class="headerlink" title="2、解决方案"></a>2、解决方案</h3><h4 id="2-1-方案一"><a href="#2-1-方案一" class="headerlink" title="2.1 方案一"></a>2.1 方案一</h4><p>在Chrome浏览器地址栏输入以下内容：</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">chrome:<span class="hljs-regexp">//</span>net-internals/<span class="hljs-comment">#hsts</span><br></code></pre></td></tr></table></figure><p><img src="/img/chrome-url-address.png"></p><p>找到 <code>Delete domain security policies</code><br>在<code>Domain</code>栏中输入需要删除的域名后点击<code>delete</code><br><img src="/img/chrome-delete-domain.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>其他</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Http接口参数下划线转为驼峰式</title>
     <link href="/2021/12/06/2021-12-06-Http%E6%8E%A5%E5%8F%A3%E5%8F%82%E6%95%B0%E4%B8%8B%E5%88%92%E7%BA%BF%E8%BD%AC%E4%B8%BA%E9%A9%BC%E5%B3%B0%E5%BC%8F/"/>
     <url>/2021/12/06/2021-12-06-Http%E6%8E%A5%E5%8F%A3%E5%8F%82%E6%95%B0%E4%B8%8B%E5%88%92%E7%BA%BF%E8%BD%AC%E4%B8%BA%E9%A9%BC%E5%B3%B0%E5%BC%8F/</url>
@@ -175,6 +194,25 @@
   
   
   <entry>
+    <title>自定义处理RestTemplate非200响应</title>
+    <link href="/2021/12/06/2019-12-13-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86RestTemplate%E9%9D%9E200%E5%93%8D%E5%BA%94/"/>
+    <url>/2021/12/06/2019-12-13-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86RestTemplate%E9%9D%9E200%E5%93%8D%E5%BA%94/</url>
+    
+    <content type="html"><![CDATA[<p>自定义处理RestTemplate非200响应</p><p><code>RestTemplate</code>对非200错误的响应默认做了处理，会丢失很多信息。尤其接口方在抛出错误的时候，将错误信息放在响应体的中；<br>这个时候如果不对响应做自定义处理是无法拿到响应结果的。  </p><p>自定义处理方式：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RestTemplateResponseErrorHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ResponseErrorHandler</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasError</span><span class="hljs-params">(ClientHttpResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">// 自定义响应码的正确性</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;   <span class="hljs-comment">// 认为所有结果都是正确的，转到上层处理</span><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleError</span><span class="hljs-params">(ClientHttpResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">//对错误的处理，可以不做任何处理</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Spring Boot JMS</title>
     <link href="/2021/12/06/2020-02-05-spring-jms/"/>
     <url>/2021/12/06/2020-02-05-spring-jms/</url>
@@ -213,16 +251,16 @@
   
   
   <entry>
-    <title>自定义处理RestTemplate非200响应</title>
-    <link href="/2021/12/06/2019-12-13-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86RestTemplate%E9%9D%9E200%E5%93%8D%E5%BA%94/"/>
-    <url>/2021/12/06/2019-12-13-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%A4%84%E7%90%86RestTemplate%E9%9D%9E200%E5%93%8D%E5%BA%94/</url>
+    <title>Jmeter简单使用介绍</title>
+    <link href="/2021/12/06/2020-03-07-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
+    <url>/2021/12/06/2020-03-07-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</url>
     
-    <content type="html"><![CDATA[<p>自定义处理RestTemplate非200响应</p><p><code>RestTemplate</code>对非200错误的响应默认做了处理，会丢失很多信息。尤其接口方在抛出错误的时候，将错误信息放在响应体的中；<br>这个时候如果不对响应做自定义处理是无法拿到响应结果的。  </p><p>自定义处理方式：  </p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">RestTemplateResponseErrorHandler</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ResponseErrorHandler</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">hasError</span><span class="hljs-params">(ClientHttpResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">// 自定义响应码的正确性</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;   <span class="hljs-comment">// 认为所有结果都是正确的，转到上层处理</span><br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">handleError</span><span class="hljs-params">(ClientHttpResponse response)</span> <span class="hljs-keyword">throws</span> IOException </span>&#123;<br>        <span class="hljs-comment">//对错误的处理，可以不做任何处理</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>Jmeter简单使用介绍</p><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><p>新建个人工作空间<code>Workspace</code>，后续所有操作基于该目录  </p><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Windows:</span> E:/Workspace<br><span class="hljs-symbol">Linux:</span> ~/Workspace<br></code></pre></td></tr></table></figure><h3 id="二、Jmeter使用"><a href="#二、Jmeter使用" class="headerlink" title="二、Jmeter使用"></a>二、Jmeter使用</h3><h4 id="1、安装jdk或者jre运行环境"><a href="#1、安装jdk或者jre运行环境" class="headerlink" title="1、安装jdk或者jre运行环境"></a>1、安装jdk或者jre运行环境</h4><h4 id="2、下载安装Jmeter"><a href="#2、下载安装Jmeter" class="headerlink" title="2、下载安装Jmeter"></a>2、下载安装Jmeter</h4><p>访问<a href="https://jmeter.apache.org/">https://jmeter.apache.org/</a>,选择左侧<code>Download Releases</code><br>选择下载<code>zip</code>文件<br><img src="/images/jmeter/jmeter-download.png" alt="jmeter-download"></p><h4 id="3、将jmeter解压到Workspace目录"><a href="#3、将jmeter解压到Workspace目录" class="headerlink" title="3、将jmeter解压到Workspace目录"></a>3、将<code>jmeter</code>解压到<code>Workspace</code>目录</h4><p><code>Windows</code>平台使用解压工具(Winrar,7Zip…)<br><code>Linux</code>平台:<code>unzip apache-jmeter-xxxx.zip</code></p><h4 id="4、运行jmeter"><a href="#4、运行jmeter" class="headerlink" title="4、运行jmeter"></a>4、运行<code>jmeter</code></h4><p>进入解压后的<code>jmeter/bin</code>目录<br><code>Windows</code>：运行<code>jmeter.bat</code><br><code>Linux</code>：<code>./jmeter.sh</code>如果无执行权限，运行 <code>chmod +x jmeter.sh</code></p><h4 id="5、运行测试集"><a href="#5、运行测试集" class="headerlink" title="5、运行测试集"></a>5、运行测试集</h4><ol><li><p>新建线程组<br><img src="/images/jmeter/thread-group.png" alt="线程组"></p></li><li><p>线程组属性配置<br>设置线程组名称<br>执行测试单元失败后的行为<br>线程数，循环次数– 并发场景测试<br><img src="/images/jmeter/thread-group-setting.png" alt="线程组属性"></p></li><li><p>保存测试计划，生成<code>jmx</code>文件<br>将文件保存到<code>Workspace/jmeter</code>  </p></li><li><p>设置http请求默认值<br>一些默认的协议、地址、端口等通用配置<br><img src="/images/jmeter/request-default.png"><br><img src="/images/jmeter/request-default-value.png"></p></li><li><p>添加HTTP信息头管理器<br>header通用参数，例如<code>Content-Type</code>,<code>Authorization</code></p></li></ol><p><img src="/images/jmeter/header-add.png"></p><p><img src="/images/jmeter/header.png"></p><ol start="6"><li><p>添加HTTP请求<br>不需要执行的HTTP请求可以禁用<br>此处根据接口定义选择对应的方法，常用有<code>GET POST DELTE PUT</code>，由于前边已经配置请求默认值，此处可以不用重复配置地址、端口、编码信息<br><img src="/images/jmeter/http-request.png"><br><img src="/images/jmeter/get.png"><br>请求参数格式为<code>json</code>对象示例：<br><img src="/images/jmeter/add.png"></p></li><li><p>添加查看结果树<br>结果树红色为请求错误，绿色为请求正确<br>检测请求结果日志，通过观察结果树，可以查看到请求参数以及相应内容<br><img src="/images/jmeter/request-result.png"><br>请求参数查看：<br><img src="/images/jmeter/result-request.png"><br>请求参数错误，请求错误返回错误信息，可以在此处查看原因<br><img src="/images/jmeter/result-response-error.png"><br>通过结果树中的日志可以确认接口是由于header中未设置<code>Content-Type</code>导致，增加后重新测试可以得到正确结果<br><img src="/images/jmeter/request-response-success.png"></p></li><li><p>结果断言<br>对请求成功的接口响应内容是否合法，符合预期做判断(http请求成功，不代表接口执行成功)<br><img src="/images/jmeter/assert.png"></p></li></ol><ul><li>响应断言 对结果文本代码等做判断  </li><li>JSON断言–返回结果为json时<br><img src="/images/jmeter/json-assert.png"></li></ul><ol start="9"><li>自定义变量<br>借助自定义变量可以将一些通用配置放置到外部文件中，例如用户名、密码<br>自定义变量取值方式：<code>$&#123;参数名&#125;</code><br>此处可以借助<code>jmeter</code>内置函数<code>__CSVReader</code>读取<code>csv</code>文本格式数据,在自定义变量中设置值为内置函数字符串时，可能存在读取换行问题，需要手动增加<code>next</code><br>可以通过将<code>csv</code>路径和取值列索引作为自定义参数(避免路径出现在多个地方，后期修改不方便)，在参数实际使用位置替换即可，并且可以实现自动读取下一行，示例如下：<br><img src="/images/jmeter/custom_params.png"><br><img src="/images/jmeter/csvreader.png">  </li></ol>]]></content>
     
     
     <categories>
       
-      <category>Java</category>
+      <category>自动化</category>
       
     </categories>
     
@@ -242,25 +280,6 @@
     <categories>
       
       <category>Java</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Jmeter简单使用介绍</title>
-    <link href="/2021/12/06/2020-03-07-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/"/>
-    <url>/2021/12/06/2020-03-07-%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</url>
-    
-    <content type="html"><![CDATA[<p>Jmeter简单使用介绍</p><h3 id="一、准备"><a href="#一、准备" class="headerlink" title="一、准备"></a>一、准备</h3><p>新建个人工作空间<code>Workspace</code>，后续所有操作基于该目录  </p><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">Windows:</span> E:/Workspace<br><span class="hljs-symbol">Linux:</span> ~/Workspace<br></code></pre></td></tr></table></figure><h3 id="二、Jmeter使用"><a href="#二、Jmeter使用" class="headerlink" title="二、Jmeter使用"></a>二、Jmeter使用</h3><h4 id="1、安装jdk或者jre运行环境"><a href="#1、安装jdk或者jre运行环境" class="headerlink" title="1、安装jdk或者jre运行环境"></a>1、安装jdk或者jre运行环境</h4><h4 id="2、下载安装Jmeter"><a href="#2、下载安装Jmeter" class="headerlink" title="2、下载安装Jmeter"></a>2、下载安装Jmeter</h4><p>访问<a href="https://jmeter.apache.org/">https://jmeter.apache.org/</a>,选择左侧<code>Download Releases</code><br>选择下载<code>zip</code>文件<br><img src="/images/jmeter/jmeter-download.png" alt="jmeter-download"></p><h4 id="3、将jmeter解压到Workspace目录"><a href="#3、将jmeter解压到Workspace目录" class="headerlink" title="3、将jmeter解压到Workspace目录"></a>3、将<code>jmeter</code>解压到<code>Workspace</code>目录</h4><p><code>Windows</code>平台使用解压工具(Winrar,7Zip…)<br><code>Linux</code>平台:<code>unzip apache-jmeter-xxxx.zip</code></p><h4 id="4、运行jmeter"><a href="#4、运行jmeter" class="headerlink" title="4、运行jmeter"></a>4、运行<code>jmeter</code></h4><p>进入解压后的<code>jmeter/bin</code>目录<br><code>Windows</code>：运行<code>jmeter.bat</code><br><code>Linux</code>：<code>./jmeter.sh</code>如果无执行权限，运行 <code>chmod +x jmeter.sh</code></p><h4 id="5、运行测试集"><a href="#5、运行测试集" class="headerlink" title="5、运行测试集"></a>5、运行测试集</h4><ol><li><p>新建线程组<br><img src="/images/jmeter/thread-group.png" alt="线程组"></p></li><li><p>线程组属性配置<br>设置线程组名称<br>执行测试单元失败后的行为<br>线程数，循环次数– 并发场景测试<br><img src="/images/jmeter/thread-group-setting.png" alt="线程组属性"></p></li><li><p>保存测试计划，生成<code>jmx</code>文件<br>将文件保存到<code>Workspace/jmeter</code>  </p></li><li><p>设置http请求默认值<br>一些默认的协议、地址、端口等通用配置<br><img src="/images/jmeter/request-default.png"><br><img src="/images/jmeter/request-default-value.png"></p></li><li><p>添加HTTP信息头管理器<br>header通用参数，例如<code>Content-Type</code>,<code>Authorization</code></p></li></ol><p><img src="/images/jmeter/header-add.png"></p><p><img src="/images/jmeter/header.png"></p><ol start="6"><li><p>添加HTTP请求<br>不需要执行的HTTP请求可以禁用<br>此处根据接口定义选择对应的方法，常用有<code>GET POST DELTE PUT</code>，由于前边已经配置请求默认值，此处可以不用重复配置地址、端口、编码信息<br><img src="/images/jmeter/http-request.png"><br><img src="/images/jmeter/get.png"><br>请求参数格式为<code>json</code>对象示例：<br><img src="/images/jmeter/add.png"></p></li><li><p>添加查看结果树<br>结果树红色为请求错误，绿色为请求正确<br>检测请求结果日志，通过观察结果树，可以查看到请求参数以及相应内容<br><img src="/images/jmeter/request-result.png"><br>请求参数查看：<br><img src="/images/jmeter/result-request.png"><br>请求参数错误，请求错误返回错误信息，可以在此处查看原因<br><img src="/images/jmeter/result-response-error.png"><br>通过结果树中的日志可以确认接口是由于header中未设置<code>Content-Type</code>导致，增加后重新测试可以得到正确结果<br><img src="/images/jmeter/request-response-success.png"></p></li><li><p>结果断言<br>对请求成功的接口响应内容是否合法，符合预期做判断(http请求成功，不代表接口执行成功)<br><img src="/images/jmeter/assert.png"></p></li></ol><ul><li>响应断言 对结果文本代码等做判断  </li><li>JSON断言–返回结果为json时<br><img src="/images/jmeter/json-assert.png"></li></ul><ol start="9"><li>自定义变量<br>借助自定义变量可以将一些通用配置放置到外部文件中，例如用户名、密码<br>自定义变量取值方式：<code>$&#123;参数名&#125;</code><br>此处可以借助<code>jmeter</code>内置函数<code>__CSVReader</code>读取<code>csv</code>文本格式数据,在自定义变量中设置值为内置函数字符串时，可能存在读取换行问题，需要手动增加<code>next</code><br>可以通过将<code>csv</code>路径和取值列索引作为自定义参数(避免路径出现在多个地方，后期修改不方便)，在参数实际使用位置替换即可，并且可以实现自动读取下一行，示例如下：<br><img src="/images/jmeter/custom_params.png"><br><img src="/images/jmeter/csvreader.png">  </li></ol>]]></content>
-    
-    
-    <categories>
-      
-      <category>自动化</category>
       
     </categories>
     
