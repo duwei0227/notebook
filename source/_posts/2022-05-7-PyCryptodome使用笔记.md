@@ -86,6 +86,7 @@ with open('private_key.pem', 'rb') as fp:
   发送方和接收方使用不同的密钥。发送方使用公钥（非机密）加密，而接收方使用私钥（机密）解密。非对称密钥通常很慢。代表有 `PKCS#1 OAEP (RSA)`
 
 `pycryptodome`支持的算法：
+
 * [Single DES](https://www.pycryptodome.org/en/latest/src/cipher/des.html) and [Triple DES](https://www.pycryptodome.org/en/latest/src/cipher/des3.html) (block ciphers)
 * [RC2](https://www.pycryptodome.org/en/latest/src/cipher/arc2.html) (block cipher)
 * [ARC4](https://www.pycryptodome.org/en/latest/src/cipher/arc4.html) (stream cipher)
@@ -139,7 +140,6 @@ plain_text = unpad(pad_plain_data, AES.block_size).decode('utf-8')
 print('解密后明文==', plain_text)
 ```
 
-
 ##### RSA
 
 `RSA`加解密一般是公钥加密，私钥解密;`PyCryptodome`当前建议使用 `PKCS1_OAEP`算法；如果加解密双方为 `Python`与 `Java`且 `Java`端采用 `RSA/ECB/PKCS1Padding`时，`Python`端需要采用 `PKCS1_v1_5`
@@ -177,6 +177,7 @@ with open('private_key.pem', mode='rb') as fp:
 ```
 
 #### 3、Crypto.Signature
+
 `RSA`使用私钥签名，公钥验签；签名验签在 `Crypto.Signature`模块包提供
 
 `pycryptodome`支持的算法：
@@ -217,22 +218,23 @@ with open('public_key.pem', mode='rb') as fp:
 `pycryptodome`支持的算法：
 
 * SHA-2 family (FIPS 180-4)
+
   * [SHA-224](https://www.pycryptodome.org/en/latest/src/hash/sha224.html)
   * [SHA-256](https://www.pycryptodome.org/en/latest/src/hash/sha256.html)
   * [SHA-384](https://www.pycryptodome.org/en/latest/src/hash/sha384.html)
   * [SHA-512, SHA-512/224, SHA-512/256](https://www.pycryptodome.org/en/latest/src/hash/sha512.html)
-  
 * SHA-3 family (FIPS 202)
+
   * [SHA3-224](https://www.pycryptodome.org/en/latest/src/hash/sha3_224.html)
   * [SHA3-256](https://www.pycryptodome.org/en/latest/src/hash/sha3_256.html)
   * [SHA3-384](https://www.pycryptodome.org/en/latest/src/hash/sha3_384.html)
   * [SHA3-512](https://www.pycryptodome.org/en/latest/src/hash/sha3_512.html)
   * [TupleHash128](https://www.pycryptodome.org/en/latest/src/hash/tuplehash128.html)
   * [TupleHash256](https://www.pycryptodome.org/en/latest/src/hash/tuplehash256.html)
-  
 * BLAKE2
-   * [BLAKE2s](https://www.pycryptodome.org/en/latest/src/hash/blake2s.html)
-   * [BLAKE2b](https://www.pycryptodome.org/en/latest/src/hash/blake2b.html)
+
+  * [BLAKE2s](https://www.pycryptodome.org/en/latest/src/hash/blake2s.html)
+  * [BLAKE2b](https://www.pycryptodome.org/en/latest/src/hash/blake2b.html)
 
 示例：
 
@@ -247,3 +249,7 @@ def cal_hash256(data: str) -> str:
     """
     return SHA256.new(data.encode('utf-8')).hexdigest()
 ```
+
+### 三、参考
+
+[https://www.pycryptodome.org/en/latest/](https://www.pycryptodome.org/en/latest/)
