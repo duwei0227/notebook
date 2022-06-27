@@ -306,6 +306,11 @@ tree.write('test.xml', encoding='utf-8', xml_declaration=True, short_empty_eleme
 
 * `ET.canonicalize(ET.dump(root))`
 
+格式化输出XML对象到字符串：
+默认输出的是一个`byte`类型字符串，可以修改`encoding='unicode'`指定输出格式为字符串，`unicode`对应的字符编码为`cp936`;如果设置`encoding`非`unicode`都按照`byte`处理。
+```python
+ElementTree.tostring(element, encoding='us-ascii', method='xml', xml_declaration=None, default_namespace=None)
+```
   
 
 #### 五、附录
